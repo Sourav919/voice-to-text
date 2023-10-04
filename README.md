@@ -36,14 +36,14 @@ Follow these steps to set up and run the Voice to Text application:
     - Create a file named `.env.local` in the project root.
     - Add your API Key to the `.env.local` file:
     
-```bash 
+   ```bash 
     REACT_APP_ASSEMBLYAI_API_KEY=YOUR_API_KEY_HERE
-```
+   ```
 
 5. Start the development server:
-```bash
+   ```bash
     npm start
-```
+   ```
 
 The application will be accessible at http://localhost:3000.
 
