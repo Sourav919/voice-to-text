@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 const APIKey = process.env.REACT_APP_API_KEY;
 
-// Set AssemblyAI Axios Header
+
 const assemblyAI = axios.create({
   baseURL: "https://api.assemblyai.com/v2",
   headers: {
@@ -14,20 +14,19 @@ const assemblyAI = axios.create({
 });
 
 const App = () => {
-  // Mic-Recorder-To-MP3
-  const recorder = useRef(null); // Recorder
-  const audioPlayer = useRef(null); // Ref for the HTML Audio Tag
+  const recorder = useRef(null);
+  const audioPlayer = useRef(null); =
   const [blobURL, setBlobUrl] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
   const [isRecording, setIsRecording] = useState(null);
 
   useEffect(() => {
-    // Declares the recorder object and stores it inside the ref
+    
     recorder.current = new MicRecorder({ bitRate: 128 });
   }, []);
 
   const startRecording = () => {
-    // Check if recording isn't blocked by the browser
+   
     recorder.current.start().then(() => {
       setIsRecording(true);
     });
@@ -50,9 +49,7 @@ const App = () => {
       .catch((e) => console.log(e));
   };
 
-  // AssemblyAI
 
-  // States
   const [uploadURL, setUploadURL] = useState("");
   const [transcriptID, setTranscriptID] = useState("");
   const [transcriptData, setTranscriptData] = useState("");
@@ -60,18 +57,18 @@ const App = () => {
   const [wordCount, setWordCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Function to generate timestamps for words
+ 
   const generateTimestamps = (text) => {
     const words = text.split(" ");
     const wordTimestamps = words.map((word, index) => ({
       word,
-      timestamp: index * 1000, // Adjust timestamp calculation as needed
+      timestamp: index * 1000,
     }));
     setTranscribedWords(wordTimestamps);
     setWordCount(words.length);
   };
 
-  // Upload the Audio File and retrieve the Upload URL
+ 
   useEffect(() => {
     if (audioFile) {
       assemblyAI
@@ -81,7 +78,7 @@ const App = () => {
     }
   }, [audioFile]);
 
-  // Submit the Upload URL to AssemblyAI and retrieve the Transcript ID
+ 
   const submitTranscriptionHandler = () => {
     assemblyAI
       .post("/transcript", {
@@ -95,14 +92,14 @@ const App = () => {
       .catch((err) => console.error(err));
   };
 
-  // Check the status of the Transcript
+  
   const checkStatusHandler = async () => {
     setIsLoading(true);
     try {
       await assemblyAI.get(`/transcript/${transcriptID}`).then((res) => {
         setTranscriptData(res.data);
 
-        // Once transcription is ready, generate timestamps
+       
         if (res.data.status === "completed") {
           generateTimestamps(res.data.text);
         }
@@ -112,7 +109,7 @@ const App = () => {
     }
   };
 
-  // Periodically check the status of the Transcript
+  
   useEffect(() => {
     const interval = setInterval(() => {
       if (transcriptData.status !== "completed" && isLoading) {
@@ -126,9 +123,9 @@ const App = () => {
     return () => clearInterval(interval);
   }, [transcriptData, isLoading]);
 
-  // Function to generate a single timestamp for the entire string
+  
   const generateTimestamp = () => {
-    const timestamp = new Date().toLocaleTimeString(); // Get current time as the timestamp
+    const timestamp = new Date().toLocaleTimeString(); 
     return timestamp;
   };
 
@@ -171,7 +168,7 @@ const App = () => {
         <div className="w-2/3 lg:w-1/3 mockup-code">
           <h2>Transcription:</h2>
           <p>Timestamp: {generateTimestamp()}</p>
-          {/* Display the transcribed text as a sentence */}
+          
           <p>{transcribedWords.map((wordInfo) => wordInfo.word).join(" ")}</p>
           <p>Total Words: {wordCount}</p>
         </div>
