@@ -14,8 +14,9 @@ const assemblyAI = axios.create({
 });
 
 const App = () => {
-  const recorder = useRef(null);
-  const audioPlayer = useRef(null); =
+  
+  const recorder = useRef(null); 
+  const audioPlayer = useRef(null); 
   const [blobURL, setBlobUrl] = useState(null);
   const [audioFile, setAudioFile] = useState(null);
   const [isRecording, setIsRecording] = useState(null);
@@ -26,7 +27,7 @@ const App = () => {
   }, []);
 
   const startRecording = () => {
-   
+    
     recorder.current.start().then(() => {
       setIsRecording(true);
     });
@@ -49,7 +50,7 @@ const App = () => {
       .catch((e) => console.log(e));
   };
 
-
+ 
   const [uploadURL, setUploadURL] = useState("");
   const [transcriptID, setTranscriptID] = useState("");
   const [transcriptData, setTranscriptData] = useState("");
@@ -57,7 +58,7 @@ const App = () => {
   const [wordCount, setWordCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
- 
+  
   const generateTimestamps = (text) => {
     const words = text.split(" ");
     const wordTimestamps = words.map((word, index) => ({
@@ -68,7 +69,7 @@ const App = () => {
     setWordCount(words.length);
   };
 
- 
+  
   useEffect(() => {
     if (audioFile) {
       assemblyAI
@@ -92,7 +93,7 @@ const App = () => {
       .catch((err) => console.error(err));
   };
 
-  
+ 
   const checkStatusHandler = async () => {
     setIsLoading(true);
     try {
@@ -168,7 +169,7 @@ const App = () => {
         <div className="w-2/3 lg:w-1/3 mockup-code">
           <h2>Transcription:</h2>
           <p>Timestamp: {generateTimestamp()}</p>
-          
+          {/* Display the transcribed text as a sentence */}
           <p>{transcribedWords.map((wordInfo) => wordInfo.word).join(" ")}</p>
           <p>Total Words: {wordCount}</p>
         </div>
