@@ -35,6 +35,7 @@ Follow these steps to set up and run the Voice to Text application:
     - Obtain an API Key from AssemblyAI.
     - Create a file named `.env.local` in the project root.
     - Add your API Key to the `.env.local` file:
+
     
    ```bash 
     REACT_APP_ASSEMBLYAI_API_KEY=YOUR_API_KEY_HERE
@@ -55,5 +56,5 @@ The application will be accessible at http://localhost:3000.
 - You will see the transcribed text displayed in the application once the transcription is complete.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](license) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
