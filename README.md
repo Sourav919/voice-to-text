@@ -6,6 +6,8 @@ Voice to Text is a web application that utilizes AssemblyAI, a powerful automati
 
 Voice to Text is a React-based application that leverages the AssemblyAI API to transcribe audio recordings. The application offers a user-friendly interface to record audio, submit it for transcription, and view the resulting text. This project is an excellent example of how to integrate the AssemblyAI API with React.
 
+https://github.com/Sourav919/voice-to-text/assets/94462441/b734d0de-cb9e-4d4f-96c0-f39215bb6028
+
 ## Features
 
 - Record audio using your device's microphone.
